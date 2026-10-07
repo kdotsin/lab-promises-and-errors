@@ -11,7 +11,7 @@ export function fetchProductCatalog(): Promise<ProductCatalog[]> {
           {id: 3, name: 'dog', price: 300},
         ]);
       } else {
-        reject('Failed to fetch catalog for some reason');
+        reject(new NetworkError('Failed to fetch products because Random'));
       }
     }, 1000)
   })
@@ -35,9 +35,9 @@ export function fetchProductReviews(product: ProductCatalog[], productId: Produc
             }
           }
         }
-        reject('Product Id does not exist')
+        reject(new DataError("Product ID was not found"))
       } else {
-        reject(`Failed to fetch reviews for product ID ${productId}`)
+        reject(new NetworkError(`Failed to fetch reviews for product ID ${productId}`))
       }
     }, 1500)
   })
@@ -54,7 +54,7 @@ export function fetchSalesReport(): Promise<SalesReport> {
         }
         resolve(saleReport);
       } else {
-        reject('Luck is not on your side')
+        reject(new NetworkError('Luck is not on your side'))
       }
     }, 1000)
   })
