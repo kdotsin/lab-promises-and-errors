@@ -1,4 +1,5 @@
 import type { ProductCatalog, ProductReview, SalesReport } from "../models/products.js";
+import { DataError, NetworkError } from "../errors/productErrors.js";
 
 export function fetchProductCatalog(): Promise<ProductCatalog[]> {
   return new Promise((resolve, reject) => {
